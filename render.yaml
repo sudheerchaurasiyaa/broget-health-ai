@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: broget-health-api
+    runtime: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: APP_ENV
+        value: production
+      - key: GCLOUD_PROJECT
+        value: broget-health-ai
+      - key: ALLOWED_ORIGINS
+        value: https://broget-health-ai.web.app,https://broget-health-ai.firebaseapp.com
+      - key: AI_MODEL
+        value: gemini-3.5-flash
+      - key: AI_API_KEY
+        sync: false
+      - key: GOOGLE_APPLICATION_CREDENTIALS
+        value: /etc/secrets/firebase-admin.json

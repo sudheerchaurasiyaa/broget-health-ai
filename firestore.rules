@@ -1,0 +1,61 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function owner(uid) { return request.auth != null && request.auth.uid == uid; }
+    function active(uid) {
+      return owner(uid) && !exists(/databases/$(database)/documents/deletionLocks/$(uid))
+        && exists(/databases/$(database)/documents/users/$(uid))
+        && !get(/databases/$(database)/documents/users/$(uid)).data.get('deleting', false);
+    }
+    function text(v, max) { return v is string && v.size() <= max; }
+    function numeric(v, min, max) { return v is number && v >= min && v <= max; }
+    function validHealth(h) {
+      return h == null || (h is map
+        && h.keys().hasAll(['age','gender','heightCm','weightKg','activity','goal','diet','allergies','restrictions','specialCare'])
+        && h.keys().hasOnly(['age','gender','heightCm','weightKg','activity','goal','diet','allergies','restrictions','specialCare'])
+        && h.age is int && numeric(h.age,13,100)
+        && h.gender in ['male','female','unspecified']
+        && numeric(h.heightCm,100,250) && numeric(h.weightKg,30,350)
+        && h.activity in ['sedentary','light','moderate','active']
+        && h.goal in ['track','maintain','lose','gain']
+        && text(h.diet,160) && text(h.allergies,300) && text(h.restrictions,300)
+        && h.specialCare is bool);
+    }
+    match /users/{uid} {
+      allow get: if owner(uid);
+      allow list: if false;
+      allow create: if owner(uid) && !exists(/databases/$(database)/documents/deletionLocks/$(uid))
+        && request.resource.data.keys().hasAll(['userId','name','health','createdAt','updatedAt'])
+        && request.resource.data.keys().hasOnly(['userId','name','health','createdAt','updatedAt'])
+        && request.resource.data.userId==uid && text(request.resource.data.name,80)
+        && request.resource.data.health==null
+        && request.resource.data.createdAt==request.time && request.resource.data.updatedAt==request.time;
+      allow update: if active(uid)
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['name','health','updatedAt'])
+        && text(request.resource.data.name,80) && request.resource.data.name.size()>0
+        && validHealth(request.resource.data.health) && request.resource.data.updatedAt==request.time;
+      allow delete: if false;
+      match /meals/{id} {
+        allow read: if active(uid);
+        allow write: if false;
+      }
+      match /settings/{id} {
+        allow read: if active(uid) && id=='preferences';
+        allow create,update: if active(uid) && id=='preferences'
+          && request.resource.data.keys().hasAll(['analytics','notifications'])
+          && request.resource.data.keys().hasOnly(['analytics','notifications'])
+          && request.resource.data.analytics is bool && request.resource.data.notifications is bool;
+      }
+      match /chat/{id} {
+        allow read: if active(uid);
+        allow write: if false;
+      }
+      match /dailySummaries/{id} { allow read: if active(uid); allow write: if false; }
+      match /notifications/{id} { allow read: if active(uid); allow write: if false; }
+      match /engagementEvents/{id} { allow read: if active(uid); allow write: if false; }
+      match /reportNarratives/{id} { allow read: if active(uid); allow write: if false; }
+    }
+    match /{document=**} { allow read,write: if false; }
+  }
+}
+

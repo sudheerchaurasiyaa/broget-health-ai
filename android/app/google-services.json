@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "311190934614",
+    "project_id": "broget-health-ai",
+    "storage_bucket": "broget-health-ai.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:311190934614:android:62fe8e1d13804a0189d7f7",
+        "android_client_info": {
+          "package_name": "com.broget.broget_ai"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyt7ZhGBag05XtYn_PRqDyIfMRKWIqMM0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

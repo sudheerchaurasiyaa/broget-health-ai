@@ -1,0 +1,4 @@
+storePassword=SUPPLY_LOCALLY
+keyPassword=SUPPLY_LOCALLY
+keyAlias=broget
+storeFile=SUPPLY_ABSOLUTE_PATH_TO_KEYSTORE
