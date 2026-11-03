@@ -251,11 +251,7 @@ class _ScannerPageState extends ConsumerState<ScannerPage> {
                 'The resized photo is sent for analysis but is not saved. Avoid people and private information. Photo storage is coming soon.',
               ),
             ),
-            if (busy) ...[
-              const LinearProgressIndicator(),
-              const SizedBox(height: 12),
-              const Text('Working on your photo. This can take a moment…'),
-            ],
+            if (busy) const LoadingPanel(message: 'Analyzing your photo…'),
             if (error != null)
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16),

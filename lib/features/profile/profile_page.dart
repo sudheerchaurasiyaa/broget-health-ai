@@ -24,7 +24,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
       allergies = TextEditingController(),
       restrictions = TextEditingController();
   String gender = 'unspecified', activity = 'sedentary', goal = 'track';
-  bool care = false, busy = false, initialized = false;
+  bool care = false, busy = false, initialized = false, nameEdited = false;
   String? error;
   @override
   void dispose() {
@@ -42,12 +42,19 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
     super.dispose();
   }
 
-  void initialize(UserProfile? profile) {
-    if (initialized) return;
+  void initialize(UserProfile? profile, String? accountName) {
+    final profileName = profile?.name.trim() ?? '';
+    final suggestedName = profileName.isNotEmpty
+        ? profileName
+        : accountName?.trim() ?? '';
+    // Registration publishes the session before updateDisplayName completes.
+    // Keep listening for a name, but never replace what the user has edited.
+    if (!nameEdited && suggestedName.isNotEmpty && name.text != suggestedName) {
+      name.text = suggestedName;
+    }
+    if (initialized || profile == null) return;
     initialized = true;
-    final user = ref.read(sessionProvider).value!;
-    name.text = profile?.name ?? user.displayName ?? '';
-    final h = profile?.health;
+    final h = profile.health;
     if (h != null) {
       age.text = '${h.age}';
       height.text = '${h.heightCm}';
@@ -133,7 +140,10 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
   );
   @override
   Widget build(BuildContext context) {
-    initialize(ref.watch(profileProvider).value);
+    initialize(
+      ref.watch(profileProvider).value,
+      ref.watch(sessionProvider).value?.displayName,
+    );
     final content = PageBody(
       title: widget.onboarding
           ? 'A plan that starts with you.'
@@ -154,6 +164,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                 const SizedBox(height: 16),
                 TextFormField(
                   controller: name,
+                  onChanged: (_) => nameEdited = true,
                   maxLength: 80,
                   decoration: const InputDecoration(labelText: 'Name'),
                   validator: requiredText,

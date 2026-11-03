@@ -183,7 +183,7 @@ class _AssistantPageState extends ConsumerState<AssistantPage> {
           ),
         ),
       if (error != null) Panel(child: Text(error!)),
-      if (busy) const LoadingPanel(),
+      if (busy) const LoadingPanel(message: 'Thinking…'),
       Panel(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,

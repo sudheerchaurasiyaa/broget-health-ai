@@ -26,19 +26,37 @@ class AsyncPanel<T> extends StatelessWidget {
 }
 
 class LoadingPanel extends StatelessWidget {
-  const LoadingPanel({super.key});
+  const LoadingPanel({super.key, this.message = 'Loading…'});
+  final String message;
   @override
   Widget build(BuildContext context) => Semantics(
-    label: 'Loading your information',
-    child: const Padding(
-      padding: EdgeInsets.all(24),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          LinearProgressIndicator(),
-          SizedBox(height: 20),
-          Text('Getting things ready…'),
-        ],
+    label: message,
+    liveRegion: true,
+    excludeSemantics: true,
+    child: Center(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 280),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SizedBox.square(
+                dimension: 20,
+                child: CircularProgressIndicator(strokeWidth: 2),
+              ),
+              const SizedBox(width: 12),
+              Flexible(
+                child: Text(
+                  message,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     ),
   );

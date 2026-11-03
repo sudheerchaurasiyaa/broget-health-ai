@@ -450,7 +450,7 @@ class _FoodPickerState extends ConsumerState<FoodPicker> {
                   ),
                   onFieldSubmitted: (_) => lookup(),
                 ),
-                if (busy) const LinearProgressIndicator(),
+                if (busy) const LoadingPanel(message: 'Searching foods…'),
                 if (searched && results.isEmpty)
                   const Text(
                     'No exact matches. Try a simpler name or enter values from a reliable label.',

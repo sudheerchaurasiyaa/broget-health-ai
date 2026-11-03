@@ -119,7 +119,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
     title: 'Make this space yours.',
     subtitle: 'Account, privacy and the details that matter.',
     children: [
-      if (busy) const LinearProgressIndicator(),
+      if (busy) const LoadingPanel(message: 'Saving changes…'),
       Panel(
         child: Column(
           children: [
