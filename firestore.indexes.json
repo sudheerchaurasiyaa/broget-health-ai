@@ -1,8 +1,4 @@
 {
   "indexes": [],
-  "fieldOverrides": [
-    { "collectionGroup": "privateQuotas", "fieldPath": "expiresAt", "ttl": true, "indexes": [] },
-    { "collectionGroup": "nutritionCache", "fieldPath": "expiresAt", "ttl": true, "indexes": [] },
-    { "collectionGroup": "analyses", "fieldPath": "expiresAt", "ttl": true, "indexes": [] }
-  ]
+  "fieldOverrides": []
 }

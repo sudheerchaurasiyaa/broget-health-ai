@@ -25,6 +25,8 @@ firebase.cmd deploy --project broget-health-ai --only firestore:rules,firestore:
 
 Keep the existing server-only write rules for meals, reports and chat. The Render backend accesses these collections through the Admin SDK using its private credential.
 
+The default firestore.indexes.json is Spark-compatible and does not request automatic TTL deletion. The API still checks cache expiry before returning results. Expired cache/quota documents require a privileged cleanup process on Spark; optional automatic TTL settings are preserved separately in firestore.indexes.blaze.json and require billing. Do not select that optional file for this Spark deployment.
+
 ## 2. Put the source in your Git repository
 
 Render can deploy a connected GitHub/GitLab/Bitbucket repository. Commit source, `backend/package-lock.json` and `render.yaml`. Keep ignored files out of the commit: `backend/.env.local`, other backend env files, `config/*.local.json`, service-account JSON files, signing keys and build artifacts. A repository has not been created or pushed by this setup.

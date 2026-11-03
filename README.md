@@ -93,7 +93,7 @@ firebase.cmd login
 firebase.cmd deploy --project YOUR_PROJECT_ID --only firestore:rules,firestore:indexes
 ```
 
-Queries use automatic single-field timestamp indexes; no composite indexes are required. firestore.indexes.json declares cleanup TTLs for structured analysis, quotas and nutrition searches. TTL deletion is asynchronous and may require billing. Expired scan results are never served after their logical expiry. If TTL is unavailable, delete expired records with a privileged maintenance process. Images are never persisted, including as Firestore base64 fields.
+Queries use automatic single-field timestamp indexes; no composite indexes are required. The default firestore.indexes.json works on Spark without billing. Optional cleanup TTLs for structured analysis, quotas and nutrition searches are in firestore.indexes.blaze.json and require billing. Expired scan results are never served after their logical expiry. On Spark, delete expired cache/quota records with a privileged maintenance process. Images are never persisted, including as Firestore base64 fields.
 
 ## Nutrition and regional foods
 
