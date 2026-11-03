@@ -3,6 +3,20 @@ param(
   [string]$Config = 'config/development.example.json'
 )
 $ErrorActionPreference = 'Stop'
+function Invoke-CheckedNative {
+  param([string]$Executable, [string[]]$Arguments)
+  $previousPreference = $ErrorActionPreference
+  try {
+    # Windows PowerShell turns native stderr (including Flutter notices) into
+    # error records. The process exit code determines whether a build failed.
+    $ErrorActionPreference = 'Continue'
+    & $Executable @Arguments
+    $nativeExitCode = $LASTEXITCODE
+  } finally {
+    $ErrorActionPreference = $previousPreference
+  }
+  if ($nativeExitCode -ne 0) { throw "$Executable exited with code $nativeExitCode." }
+}
 $root = Split-Path -Parent $PSScriptRoot
 Set-Location -LiteralPath $root
 $settings = Get-Content -Raw -Encoding UTF8 -LiteralPath $Config | ConvertFrom-Json
@@ -19,10 +33,7 @@ if ($settings.APP_ENV -ne 'development') {
   if ($Target -eq 'web' -and [string]::IsNullOrWhiteSpace($settings.RECAPTCHA_SITE_KEY)) { throw 'Web production requires App Check site key.' }
   if ($Target -ne 'web' -and [string]::IsNullOrWhiteSpace($settings.FIREBASE_ANDROID_APP_ID)) { throw 'Android production requires its Firebase application ID.' }
 }
-flutter analyze
-if ($LASTEXITCODE -ne 0) { throw 'Static analysis failed.' }
-flutter test
-if ($LASTEXITCODE -ne 0) { throw 'Flutter tests failed.' }
-flutter build $Target --release "--dart-define-from-file=$Config"
-if ($LASTEXITCODE -ne 0) { throw 'Build failed.' }
-if ($Target -eq 'web') { node scripts/prepare-web.mjs; if ($LASTEXITCODE -ne 0) { throw 'Web metadata generation failed.' } }
+Invoke-CheckedNative -Executable flutter -Arguments @('analyze')
+Invoke-CheckedNative -Executable flutter -Arguments @('test')
+Invoke-CheckedNative -Executable flutter -Arguments @('build', $Target, '--release', "--dart-define-from-file=$Config")
+if ($Target -eq 'web') { Invoke-CheckedNative -Executable node -Arguments @('scripts/prepare-web.mjs') }

@@ -31,7 +31,9 @@ Future<void> main() async {
     } else {
       await FirebaseAppCheck.instance.activate(
         providerAndroid: const AndroidPlayIntegrityProvider(),
-        providerWeb: kIsWeb ? ReCaptchaV3Provider(AppConfig.recaptcha) : null,
+        providerWeb: kIsWeb
+            ? ReCaptchaEnterpriseProvider(AppConfig.recaptcha)
+            : null,
       );
     }
     if (kIsWeb) await FirebaseAuth.instance.setPersistence(Persistence.LOCAL);

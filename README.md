@@ -73,7 +73,7 @@ Copy an example to ignored `config/*.local.json`; load it with --dart-define-fro
 | FIREBASE_PROJECT_ID | Project ID |
 | FIREBASE_MESSAGING_SENDER_ID | Public sender identifier |
 | FIREBASE_AUTH_DOMAIN | Authorized Firebase auth domain |
-| RECAPTCHA_SITE_KEY | Production Web App Check reCAPTCHA v3 site key |
+| RECAPTCHA_SITE_KEY | Production Web App Check Enterprise/Fraud Defense public site key |
 | APP_DOWNLOAD_URL | Optional real HTTPS APK URL; empty hides download button |
 
 Server variables are documented in backend/.env.example and backend/production.env.example. ALLOWED_ORIGINS is a comma-separated list of exact origins with no trailing slash. Authentication and quotas are independent of CORS. Firebase client identifiers are public; AI/USDA keys and service-account credentials are secrets.
@@ -86,7 +86,7 @@ Create separate staging and production projects, register Android/Web apps, enab
 
 Copy public Firebase identifiers into local client config. FirebaseOptions are supplied explicitly. For production native Analytics/Crashlytics service configuration and symbol upload, run FlutterFire CLI against your project and apply its Android service configuration/Gradle integration. Keep this project's explicit Dart configuration as the source of client options. Optional analytics/crash collection starts disabled.
 
-Register Android Play Integrity with release SHA-256 fingerprints, and Web App Check reCAPTCHA v3 for real domains. Enable Firestore App Check enforcement and Authentication enforcement where supported. The production backend independently verifies App Check. Configure appropriate Play Integrity settings for sideloaded APKs and validate on intended devices.
+Register Android Play Integrity with release SHA-256 fingerprints, and Web App Check Fraud Defense (reCAPTCHA Enterprise) for real domains. Use the same public Enterprise site key in Firebase App Check and the client configuration. Enable Firestore App Check enforcement and Authentication enforcement where supported after validating client tokens. The production backend independently verifies App Check. Configure appropriate Play Integrity settings for sideloaded APKs and validate on intended devices.
 
 ```powershell
 firebase.cmd login

@@ -74,7 +74,7 @@ Deploy. Visit the service's URL followed by `/health`, for example `https://YOUR
 
 The API verifies Firebase ID tokens and App Check tokens. Keep both checks enabled.
 
-- Web: Firebase → App Check → select the Web app → register reCAPTCHA v3 for your hosted domains. Its **site key** is public and belongs in RECAPTCHA_SITE_KEY. Register the secret with Firebase, not the Flutter app.
+- Web: create a Website / Score-based key in Google Cloud Fraud Defense (formerly reCAPTCHA Enterprise) under broget-health-ai, allowing broget-health-ai.web.app and broget-health-ai.firebaseapp.com. In Firebase → App Check → select the Web app → Fraud Defense, register the **same public site key**. That site key belongs in RECAPTCHA_SITE_KEY. The Flutter app now uses ReCaptchaEnterpriseProvider. Do not use the deprecated Classic provider or paste a classic secret key into the Enterprise site-key field.
 - Android: add the signing certificate's SHA-256 fingerprint under the Android app, then register Play Integrity in App Check. Configure the Play Integrity settings for your intended distribution, including sideloaded APKs if applicable. Check this on a physical device.
 - For localhost or emulator testing against live services, follow the App Check debug-provider workflow; the existing emulator configuration remains the easiest local development option. Do not weaken production checks or add localhost to a production reCAPTCHA key.
 
@@ -83,7 +83,7 @@ Start with App Check metrics, verify working tokens, then enable enforcement for
 ## 6. Set the URL, build and host the client
 
 ```powershell
-.\scripts\configure-firebase.ps1 -WebConfig config/firebase-web.local.json -ApiUrl https://YOUR-SERVICE.onrender.com -SiteKey YOUR_RECAPTCHA_V3_SITE_KEY
+.\scripts\configure-firebase.ps1 -WebConfig config/firebase-web.local.json -ApiUrl https://YOUR-SERVICE.onrender.com -SiteKey YOUR_ENTERPRISE_SITE_KEY
 .\scripts\build.ps1 -Target web -Config config/production.local.json
 firebase.cmd deploy --project broget-health-ai --only hosting
 ```
