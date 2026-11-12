@@ -1,9 +1,9 @@
 import 'dart:typed_data';
-import 'package:broget_ai/data/models/models.dart';
-import 'package:broget_ai/features/food_scanner/scanner_page.dart';
-import 'package:broget_ai/features/meal_tracking/meal_editor.dart';
-import 'package:broget_ai/services/ai/broget_ai_service.dart';
-import 'package:broget_ai/services/images/food_images.dart';
+import 'package:health_broget/data/models/models.dart';
+import 'package:health_broget/features/food_scanner/scanner_page.dart';
+import 'package:health_broget/features/meal_tracking/meal_editor.dart';
+import 'package:health_broget/services/ai/health_broget_service.dart';
+import 'package:health_broget/services/images/food_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -15,7 +15,7 @@ class TestImages extends FoodImageService {
       Uint8List.fromList(img.encodePng(img.Image(width: 2, height: 2)));
 }
 
-class TestScanAi implements BrogetAiService {
+class TestScanAi implements HealthBrogetService {
   @override
   Future<AIAnalysis> analyzeFoodImage(
     Uint8List image, {

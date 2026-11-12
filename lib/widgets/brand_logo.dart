@@ -9,15 +9,15 @@ class BrandLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Semantics(
-    label: 'BROGET AI',
+    label: 'Health Broget',
     image: true,
     child: SizedBox(
       width: width,
-      height: compact ? width : width * 242 / 929,
+      height: compact ? width : width * 280 / 1200,
       child: Image.asset(
         compact
-            ? 'assets/branding/brogetai_app_logo_192.png'
-            : 'assets/branding/brogetai_full_logo.png',
+            ? 'assets/branding/health_broget_app_logo_192.png'
+            : 'assets/branding/health_broget_wordmark.png',
         fit: BoxFit.contain,
         excludeFromSemantics: true,
         filterQuality: FilterQuality.medium,

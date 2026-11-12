@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:broget_ai/data/models/nutrition_report.dart';
-import 'package:broget_ai/data/models/models.dart';
+import 'package:health_broget/data/models/nutrition_report.dart';
+import 'package:health_broget/data/models/models.dart';
 
 void main() {
   test(

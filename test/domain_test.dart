@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:broget_ai/data/models/models.dart';
-import 'package:broget_ai/routing/app_router.dart';
-import 'package:broget_ai/services/images/food_images.dart';
+import 'package:health_broget/data/models/models.dart';
+import 'package:health_broget/routing/app_router.dart';
+import 'package:health_broget/services/images/food_images.dart';
 import 'package:flutter/foundation.dart';
 
 HealthProfile profile({

@@ -1,4 +1,4 @@
-import 'package:broget_ai/data/repositories/repositories.dart';
+import 'package:health_broget/data/repositories/repositories.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
 

@@ -31,7 +31,7 @@ String friendlyError(Object error) {
     'request-conflict' =>
       'This request has already been used. Start a new message and try again.',
     'assistant-unavailable' || 'assistant-busy' =>
-      'Broget AI Health Assistant is busy right now. Please wait a moment and try again.',
+      'Health Broget Assistant is busy right now. Please wait a moment and try again.',
     'assistant-model-unavailable' ||
     'assistant-configuration-error' ||
     'assistant-request-rejected' =>

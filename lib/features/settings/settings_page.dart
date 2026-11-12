@@ -10,7 +10,7 @@ import '../../core/errors/app_error.dart';
 import '../../core/config/app_config.dart';
 import '../../data/models/models.dart';
 import '../../data/repositories/repositories.dart';
-import '../../services/ai/broget_ai_service.dart';
+import '../../services/ai/health_broget_service.dart';
 import '../../widgets/common.dart';
 import 'personalization_panel.dart';
 
@@ -236,7 +236,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               ),
               (Icons.shield_outlined, 'Privacy policy', '/privacy'),
               (Icons.description_outlined, 'Terms of service', '/terms'),
-              (Icons.info_outline, 'About Broget AI', '/about'),
+              (Icons.info_outline, 'About Health Broget', '/about'),
               (Icons.android, 'Android application', '/download'),
             ].map(
               (item) => ListTile(
@@ -251,8 +251,8 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               future: PackageInfo.fromPlatform(),
               builder: (context, s) => ListTile(
                 contentPadding: EdgeInsets.zero,
-                title: const Text('Broget AI'),
-                subtitle: Text('Version ${s.data?.version ?? '1.0.0'}'),
+                title: const Text('Health Broget'),
+                subtitle: Text('Version ${s.data?.version ?? '1.0.2'}'),
               ),
             ),
           ],

@@ -6,7 +6,7 @@ abstract final class AppTheme {
   static const lime = Color(0xFFDDF59C);
   static ThemeData get light => ThemeData(
     useMaterial3: true,
-    fontFamily: 'BrogetSans',
+    fontFamily: 'HealthBrogetSans',
     scaffoldBackgroundColor: const Color(0xFFF7F8F2),
     colorScheme: ColorScheme.fromSeed(
       seedColor: green,

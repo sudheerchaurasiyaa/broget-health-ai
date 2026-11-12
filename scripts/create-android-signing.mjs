@@ -18,7 +18,7 @@ const keytool = join(process.env.JAVA_HOME || 'C:/Program Files/Android/Android 
 const password = randomBytes(32).toString('hex');
 const env = { ...process.env, BROGET_SIGNING_PASSWORD: password };
 const args = ['-keystore', keystore, '-storepass:env', 'BROGET_SIGNING_PASSWORD'];
-execFileSync(keytool, ['-genkeypair', ...args, '-storetype', 'PKCS12', '-alias', 'broget', '-keyalg', 'RSA', '-keysize', '3072', '-validity', '10000', '-dname', 'CN=BROGET Health AI', '-keypass:env', 'BROGET_SIGNING_PASSWORD'], { env, stdio: 'pipe' });
+execFileSync(keytool, ['-genkeypair', ...args, '-storetype', 'PKCS12', '-alias', 'broget', '-keyalg', 'RSA', '-keysize', '3072', '-validity', '10000', '-dname', 'CN=Health Broget', '-keypass:env', 'BROGET_SIGNING_PASSWORD'], { env, stdio: 'pipe' });
 writeFileSync(properties, `storePassword=${password}\nkeyPassword=${password}\nkeyAlias=broget\nstoreFile=${keystore.replaceAll('\\', '/')}\n`, { mode: 0o600 });
 const certificate = execFileSync(keytool, ['-exportcert', ...args, '-alias', 'broget', '-rfc'], { env, stdio: 'pipe' });
 const x509 = new X509Certificate(certificate);

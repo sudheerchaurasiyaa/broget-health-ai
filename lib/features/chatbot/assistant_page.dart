@@ -6,7 +6,7 @@ import '../../core/errors/app_error.dart';
 import '../../core/theme/app_theme.dart';
 import '../../data/models/models.dart';
 import '../../data/repositories/repositories.dart';
-import '../../services/ai/broget_ai_service.dart';
+import '../../services/ai/health_broget_service.dart';
 import '../../widgets/common.dart';
 import '../meal_tracking/meal_editor.dart';
 
@@ -83,7 +83,7 @@ class _AssistantPageState extends ConsumerState<AssistantPage> {
   Widget build(BuildContext context) => PageBody(
     title: 'A little guidance, on your terms.',
     subtitle:
-        'Broget AI Health Assistant · Nutrition education and ideas, informed by your own records.',
+        'Health Broget Assistant · Nutrition education and ideas, informed by your own records.',
     children: [
       Panel(
         color: AppTheme.lime,
@@ -123,7 +123,7 @@ class _AssistantPageState extends ConsumerState<AssistantPage> {
         retry: () => ref.invalidate(chatProvider),
         builder: (messages) => messages.isEmpty
             ? const EmptyPanel(
-                title: 'Hello, I’m Broget AI Health Assistant.',
+                title: 'Hello, I’m Health Broget Assistant.',
                 message:
                     'What would you like to understand about your nutrition today?',
               )
@@ -148,7 +148,7 @@ class _AssistantPageState extends ConsumerState<AssistantPage> {
                                   Text(
                                     m.role == 'user'
                                         ? 'You'
-                                        : 'Broget AI Health Assistant',
+                                        : 'Health Broget Assistant',
                                     style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: AppTheme.green,

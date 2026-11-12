@@ -1,5 +1,5 @@
-const CACHE = 'broget-public-v2';
-const PUBLIC = ['/manifest.json', '/icons/Icon-192.png', '/icons/Icon-512.png', '/branding/brogetai_full_logo.png'];
+const CACHE = 'health-broget-public-v1';
+const PUBLIC = ['/manifest.json', '/icons/Icon-192.png', '/icons/Icon-512.png', '/branding/health_broget_wordmark.png'];
 self.addEventListener('install', event => event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(PUBLIC))));
 self.addEventListener('activate', event => event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k))))));
 self.addEventListener('fetch', event => {

@@ -57,7 +57,7 @@ test('backend verifies real emulator tokens and throttles requests', async () =>
   const user = await response.json(); assert.ok(user.idToken);
   const body = { message: 'Are you ChatGPT?', start: '2026-10-27T18:30:00Z', end: '2026-10-28T18:30:00Z' };
   const first = await request(app).post('/chat').set('Authorization', `Bearer ${user.idToken}`).send(body);
-  assert.equal(first.status, 200); assert.match(first.body.text, /Broget AI Health Assistant/);
+  assert.equal(first.status, 200); assert.match(first.body.text, /Health Broget Assistant/);
   const second = await request(app).post('/chat').set('Authorization', `Bearer ${user.idToken}`).send(body);
   assert.equal(second.status, 429);
   const invalid = await request(app).post('/analyze').set('Authorization', `Bearer ${user.idToken}`).send({ image: 'malicious', reference: false });

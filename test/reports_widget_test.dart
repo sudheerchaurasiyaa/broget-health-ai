@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
-import 'package:broget_ai/core/theme/app_theme.dart';
-import 'package:broget_ai/data/models/models.dart';
-import 'package:broget_ai/data/models/nutrition_report.dart';
-import 'package:broget_ai/data/repositories/repositories.dart';
-import 'package:broget_ai/services/ai/broget_ai_service.dart';
-import 'package:broget_ai/features/reports/reports_page.dart';
+import 'package:health_broget/core/theme/app_theme.dart';
+import 'package:health_broget/data/models/models.dart';
+import 'package:health_broget/data/models/nutrition_report.dart';
+import 'package:health_broget/data/repositories/repositories.dart';
+import 'package:health_broget/services/ai/health_broget_service.dart';
+import 'package:health_broget/features/reports/reports_page.dart';
 
-class _ReportApi extends BrogetApi {
+class _ReportApi extends HealthBrogetApi {
   _ReportApi() : super(http.Client());
   @override
   Future<NutritionReport> nutritionReport(DateTime start, DateTime end) async {
@@ -44,7 +44,7 @@ class _ReportApi extends BrogetApi {
 void main() {
   setUpAll(() async {
     TestWidgetsFlutterBinding.ensureInitialized();
-    await (FontLoader('BrogetSans')
+    await (FontLoader('HealthBrogetSans')
           ..addFont(rootBundle.load('assets/fonts/Roboto-Regular.ttf'))
           ..addFont(rootBundle.load('assets/fonts/Roboto-Bold.ttf')))
         .load();

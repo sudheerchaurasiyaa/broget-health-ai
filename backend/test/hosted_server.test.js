@@ -29,14 +29,14 @@ test('standalone hosted entry starts and protects API routes without using emula
     await new Promise((resolve, reject) => {
       const timer = setTimeout(() => reject(new Error('Hosted API did not start')), 12000);
       child.stdout.on('data', chunk => {
-        if (chunk.toString().includes('BROGET hosted API ready')) { clearTimeout(timer); resolve(); }
+        if (chunk.toString().includes('Health Broget hosted API ready')) { clearTimeout(timer); resolve(); }
       });
       child.once('exit', () => { clearTimeout(timer); reject(new Error('Hosted API exited before readiness')); });
       child.once('error', reject);
     });
     const url = `http://127.0.0.1:${port}`;
     const health = await fetch(`${url}/health`);
-    assert.equal(health.status, 200); assert.deepEqual(await health.json(), { status: 'ok' });
+    assert.equal(health.status, 200); assert.deepEqual(await health.json(), { status: 'ok', name: 'Health Broget', version: '1.0.2' });
     const protectedRequest = await fetch(`${url}/chat`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
     assert.equal(protectedRequest.status, 401);
     assert.deepEqual(await protectedRequest.json(), { code: 'sign-in-required' });

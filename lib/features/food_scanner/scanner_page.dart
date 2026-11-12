@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:uuid/uuid.dart';
 import '../../data/models/models.dart';
-import '../../services/ai/broget_ai_service.dart';
+import '../../services/ai/health_broget_service.dart';
 import '../../services/images/food_images.dart';
 import '../../core/errors/app_error.dart';
 import '../../widgets/common.dart';

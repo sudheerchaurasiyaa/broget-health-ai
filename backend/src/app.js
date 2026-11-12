@@ -34,7 +34,7 @@ async function writePrivate(req, ref, data) {
   });
 }
 app.use(cors({ origin: (origin, done) => done(null, !origin || allowed.includes(origin)), methods: ['GET', 'POST', 'DELETE', 'PUT'], allowedHeaders: ['Content-Type', 'Authorization', 'X-Firebase-AppCheck'] }));
-app.get('/health', (req, res) => res.json({ status: 'ok' }));
+app.get('/health', (req, res) => res.json({ status: 'ok', name: 'Health Broget', version: '1.0.2' }));
 app.use(express.json({ limit: '3mb' }));
 app.use(authenticate);
 app.use(async (req, res, next) => {

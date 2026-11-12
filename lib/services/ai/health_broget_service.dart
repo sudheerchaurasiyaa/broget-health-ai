@@ -12,7 +12,7 @@ import '../../core/errors/app_error.dart';
 import '../../data/models/models.dart';
 import '../../data/models/nutrition_report.dart';
 
-abstract interface class BrogetAiService {
+abstract interface class HealthBrogetService {
   Future<AIAnalysis> analyzeFoodImage(
     Uint8List image, {
     bool reference = false,
@@ -32,11 +32,11 @@ abstract interface class BrogetAiService {
 }
 
 final apiProvider = Provider((ref) {
-  final api = BrogetApi(http.Client());
+  final api = HealthBrogetApi(http.Client());
   ref.onDispose(api.dispose);
   return api;
 });
-final aiServiceProvider = Provider<BrogetAiService>(
+final aiServiceProvider = Provider<HealthBrogetService>(
   (ref) => ref.watch(apiProvider),
 );
 
@@ -46,8 +46,8 @@ class ChatReply {
   final Map<String, dynamic>? proposal;
 }
 
-class BrogetApi implements BrogetAiService {
-  BrogetApi(this.client);
+class HealthBrogetApi implements HealthBrogetService {
+  HealthBrogetApi(this.client);
   final http.Client client;
   Future<String>? _timeZone;
   Future<String> get timeZone => _timeZone ??=

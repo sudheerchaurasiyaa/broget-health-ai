@@ -14,7 +14,7 @@ import 'core/theme/app_theme.dart';
 import 'data/repositories/repositories.dart';
 import 'routing/app_router.dart';
 import 'widgets/common.dart';
-import 'services/ai/broget_ai_service.dart';
+import 'services/ai/health_broget_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -52,7 +52,7 @@ Future<void> main() async {
         );
       };
     }
-    runApp(const ProviderScope(child: BrogetApp()));
+    runApp(const ProviderScope(child: HealthBrogetApp()));
   } catch (_) {
     runApp(
       MaterialApp(
@@ -68,7 +68,7 @@ Future<void> main() async {
                     const Icon(Icons.settings_suggest_outlined, size: 48),
                     const SizedBox(height: 16),
                     const Text(
-                      'BROGET AI could not connect to its services. Please check the application configuration or try again.',
+                      'Health Broget could not connect to its services. Please check the application configuration or try again.',
                     ),
                     const SizedBox(height: 20),
                     FilledButton(
@@ -86,8 +86,8 @@ Future<void> main() async {
   }
 }
 
-class BrogetApp extends ConsumerWidget {
-  const BrogetApp({super.key});
+class HealthBrogetApp extends ConsumerWidget {
+  const HealthBrogetApp({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(sessionProvider, (previous, next) {
@@ -118,7 +118,7 @@ class BrogetApp extends ConsumerWidget {
       }
     });
     return MaterialApp.router(
-      title: 'BROGET AI',
+      title: 'Health Broget',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
       routerConfig: ref.watch(routerProvider),

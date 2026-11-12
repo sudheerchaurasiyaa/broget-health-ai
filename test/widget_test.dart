@@ -2,15 +2,15 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
-import 'package:broget_ai/core/theme/app_theme.dart';
-import 'package:broget_ai/features/public/public_page.dart';
-import 'package:broget_ai/features/dashboard/dashboard_page.dart';
-import 'package:broget_ai/data/models/models.dart';
+import 'package:health_broget/core/theme/app_theme.dart';
+import 'package:health_broget/features/public/public_page.dart';
+import 'package:health_broget/features/dashboard/dashboard_page.dart';
+import 'package:health_broget/data/models/models.dart';
 
 void main() {
   setUpAll(() async {
     TestWidgetsFlutterBinding.ensureInitialized();
-    await (FontLoader('BrogetSans')
+    await (FontLoader('HealthBrogetSans')
           ..addFont(rootBundle.load('assets/fonts/Roboto-Regular.ttf'))
           ..addFont(rootBundle.load('assets/fonts/Roboto-Bold.ttf')))
         .load();
@@ -40,7 +40,7 @@ void main() {
       );
       await tester.runAsync(() async {
         await precacheImage(
-          const AssetImage('assets/branding/brogetai_full_logo.png'),
+          const AssetImage('assets/branding/health_broget_wordmark.png'),
           tester.element(find.byType(PublicPage)),
         );
       });

@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/models.dart';
-import '../../services/ai/broget_ai_service.dart';
+import '../../services/ai/health_broget_service.dart';
 
 final authRepositoryProvider = Provider(
   (ref) => AuthRepository(FirebaseAuth.instance),
@@ -170,7 +170,7 @@ class UserRepository {
 class MealRepository {
   MealRepository(this.db, this.api);
   final FirebaseFirestore db;
-  final BrogetApi api;
+  final HealthBrogetApi api;
   CollectionReference<Map<String, dynamic>> collection(String uid) =>
       db.collection('users').doc(uid).collection('meals');
   Query<Map<String, dynamic>> range(String uid, DateTime start, DateTime end) =>

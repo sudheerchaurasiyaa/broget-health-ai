@@ -1,6 +1,6 @@
-# BROGET Health AI Android release
+# Health Broget Android release
 
-Version 1.0.1 (build 2) includes compact loading indicators throughout the app and the registration-name prefill fix. The same Flutter source supplies the hosted website and Android app.
+Version 1.0.2 (build 3) applies the Health Broget name and new heart/leaf logo throughout the app, retaining compact loading indicators and the registration-name prefill fix. The same Flutter source supplies the hosted website and Android app.
 
 ## Build and signing
 
@@ -11,7 +11,7 @@ node scripts/create-android-signing.mjs
 
 The signing script preserves an existing identity and refuses to replace incomplete signing files. The private keystore is in `.local/signing/broget-release.p12`, and its passwords are in `android/key.properties`. Both paths are ignored by Git. Back up both privately: future APK updates must use the same signing identity. Never share either file with APK recipients.
 
-The signed build output is `build/app/outputs/flutter-apk/app-release.apk`. The downloadable release asset is named `broget-health-ai-1.0.1.apk` and has a companion SHA-256 file on GitHub Releases.
+The signed build output is `build/app/outputs/flutter-apk/app-release.apk`. The downloadable release asset is named `health-broget-1.0.2.apk` and has a companion SHA-256 file on GitHub Releases.
 
 ## App Check for shared APKs
 

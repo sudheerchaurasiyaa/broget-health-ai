@@ -1,4 +1,4 @@
-import 'package:broget_ai/features/authentication/auth_page.dart';
+import 'package:health_broget/features/authentication/auth_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

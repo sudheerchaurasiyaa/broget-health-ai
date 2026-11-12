@@ -1,8 +1,8 @@
-# BROGET AI architecture
+# Health Broget architecture
 
 One Flutter application targets Android and responsive Web. Riverpod owns asynchronous state; GoRouter owns guarded, deep-linkable navigation. Widgets call repositories, never Firestore queries. Firebase Auth persists identity, Firestore stores private profiles/meals/settings/chat, and App Check attests production requests. Photo storage is coming soon: the application has no Storage SDK or bucket dependency. Food photos are resized and sent directly to the authenticated analysis backend without being retained.
 
-`BrogetAiService` is the provider-independent client contract. Its HTTP implementation calls the same Node backend in every environment. Locally, Express runs alongside the Firebase emulators without deployed Cloud Functions or paid cloud infrastructure. Production exports the identical Express application as a Firebase HTTPS function. Provider credentials never enter Dart, APKs, or web bundles.
+`HealthBrogetService` is the provider-independent client contract. Its HTTP implementation calls the same Node backend in every environment. Locally, Express runs alongside the Firebase emulators without deployed Cloud Functions or paid cloud infrastructure. Production exports the identical Express application as a Firebase HTTPS function. Provider credentials never enter Dart, APKs, or web bundles.
 
 The backend verifies Auth and App Check, derives the UID exclusively from verified credentials, enforces transaction-based quotas, validates strict request/output schemas, and supplies bounded authorized nutrition context. Photo scanning prefills approximate per-100g nutrition and portions, with private server-owned snapshots and explicit AI provenance. Users review and can edit them before saving a meal. USDA FoodData Central and an administrator-managed Firestore food catalog separately provide attributed nutrition matches. Only confirmed meals enter totals; deterministic services calculate targets, meal totals and reports.
 

@@ -1,6 +1,6 @@
 {
-  "name": "broget-api",
-  "version": "1.0.0",
+  "name": "health-broget-api",
+  "version": "1.0.2",
   "private": true,
   "type": "module",
   "engines": {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
-import '../../services/ai/broget_ai_service.dart';
+import '../../services/ai/health_broget_service.dart';
 import '../../widgets/common.dart';
 import '../../core/errors/app_error.dart';
 

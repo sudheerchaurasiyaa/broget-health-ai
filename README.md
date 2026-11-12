@@ -1,4 +1,4 @@
-# BROGET AI
+# Health Broget
 
 One Flutter application for Android and responsive Web: public pages, Firebase authentication, onboarding, nutrition profile and deterministic targets, photo recognition, optional reference objects, nutrition lookup, editable confirmed meals, dashboard, daily/weekly/monthly reports, assistant, settings and account deletion. **Photo storage is coming soon.** Only Auth and Firestore are required; scans process photos without saving them.
 
@@ -161,7 +161,7 @@ Artifacts: build/app/outputs/flutter-apk/app-release.apk and build/app/outputs/b
 
 ## Branding
 
-The supplied original PNGs are preserved in `assets/branding/`: the full logo retains transparency, and the app logo retains its background. Run `node scripts/generate-icons.mjs` after replacing the originals to regenerate Android launcher/splash artwork, web icons and the compact Flutter asset. Rebuild the APK to update the installed launcher icon.
+The Health Broget wordmark and matching heart/leaf app icon are in `assets/branding/`. The wordmark retains transparency; the app icon uses a pale mint background. Run `node scripts/generate-icons.mjs` to regenerate Android launcher/splash artwork, web icons and compact assets. See [branding assets and generation prompts](docs/BRANDING.md). Rebuild the APK to update the installed launcher icon.
 
 ## Troubleshooting
 

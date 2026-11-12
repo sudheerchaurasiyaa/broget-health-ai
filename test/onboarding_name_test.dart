@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'package:broget_ai/data/models/models.dart';
-import 'package:broget_ai/data/repositories/repositories.dart';
-import 'package:broget_ai/features/profile/profile_page.dart';
+import 'package:health_broget/data/models/models.dart';
+import 'package:health_broget/data/repositories/repositories.dart';
+import 'package:health_broget/features/profile/profile_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

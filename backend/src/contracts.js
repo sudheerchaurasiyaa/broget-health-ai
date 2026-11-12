@@ -66,7 +66,7 @@ export const assistantOutput = z.object({
   text: z.string().min(1).max(6000),
   tool: z.object({ name: z.enum(toolNames), arguments: z.record(z.string(), z.unknown()) }).strict().nullable(),
 }).strict();
-export const identity = "I'm Broget AI Health Assistant, the AI health and nutrition assistant built into the Broget AI application.";
+export const identity = "I'm Health Broget Assistant, the AI health and nutrition assistant built into the Health Broget application.";
 const identityQuestion = /\b(gemini|chatgpt|openai|model|provider|system prompt|api key|api are you|who (created|made|built|trained) you|which ai|what ai|underlying technology)\b/i;
 export function directAnswer(message) {
   if (identityQuestion.test(message)) return identity;

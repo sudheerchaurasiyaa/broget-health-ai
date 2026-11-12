@@ -20,7 +20,7 @@ class PublicPage extends StatelessWidget {
           'Scan a food photo, review the AI estimate, match it to a nutrition source and confirm your portion.',
           'Log meals by breakfast, lunch, dinner and snacks. Correct or delete any entry.',
           'Explore daily, weekly and monthly reports calculated from your own records.',
-          'Ask Broget AI Health Assistant about your logged food and meal ideas.',
+          'Ask Health Broget Assistant about your logged food and meal ideas.',
         ],
       ),
       '/how-it-works': (
@@ -35,9 +35,9 @@ class PublicPage extends StatelessWidget {
       ),
       '/about': (
         'Food awareness, without the noise.',
-        'Meet BROGET AI · Version 1.0.0',
+        'Meet Health Broget · Version 1.0.2',
         [
-          'BROGET AI combines a food journal, photo-assisted recognition, deterministic nutrition tracking and a helpful nutrition assistant.',
+          'Health Broget combines a food journal, photo-assisted recognition, deterministic nutrition tracking and a helpful nutrition assistant.',
           'A photograph cannot reveal exact ingredients, cooking oils or portion weights. All food recognition and nutrition values are estimates.',
           'Targets use the Mifflin–St Jeor equation and activity factors. They are general estimates, not medical advice. Children and people with special care needs should consult a qualified professional.',
           'Your records are private to your account. Photo storage is coming soon; photos used for analysis are not saved. You can delete your account in settings.',
@@ -58,7 +58,7 @@ class PublicPage extends StatelessWidget {
         'A companion for your routine.',
         'Terms of service · Effective 28 October 2026',
         [
-          'BROGET AI offers general food tracking and nutrition education. It does not diagnose, treat, prescribe medication or replace a healthcare professional.',
+          'Health Broget offers general food tracking and nutrition education. It does not diagnose, treat, prescribe medication or replace a healthcare professional.',
           'Photo recognition, nutrient databases, portion estimates and suggested targets can be inaccurate. Review and correct entries before relying on them. Do not use this service for emergency decisions.',
           'You are responsible for the content you upload and your account security. Do not upload unlawful content, attempt to access another account or abuse automated features.',
           'The service requires users to be at least 13. Users under 18 must use the service with appropriate guardian consent and should obtain professional nutrition advice.',
@@ -255,7 +255,7 @@ class PublicPage extends StatelessWidget {
                     ),
                   ] else if (path == '/download') ...[
                     Text(
-                      'Use Broget AI on Android',
+                      'Use Health Broget on Android',
                       style: Theme.of(context).textTheme.headlineLarge,
                     ),
                     const SizedBox(height: 16),
@@ -370,7 +370,7 @@ class PublicPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 12),
                   const Text(
-                    '© 2026 BROGET AI · Make every meal a little more mindful.',
+                    '© 2026 Health Broget · Make every meal a little more mindful.',
                   ),
                 ],
               ),

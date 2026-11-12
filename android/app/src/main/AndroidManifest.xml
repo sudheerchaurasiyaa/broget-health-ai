@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.INTERNET"/><application
-        android:label="BROGET AI"
+        android:label="Health Broget"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher" android:allowBackup="false" android:usesCleartextTraffic="false">
         <meta-data android:name="firebase_analytics_collection_enabled" android:value="false" />
