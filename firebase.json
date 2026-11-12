@@ -1,104 +1,113 @@
-{
-  "functions": [
-    {
-      "source": "backend",
-      "codebase": "broget",
-      "runtime": "nodejs22",
-      "ignore": [
-        "node_modules",
-        ".env",
-        ".env.*",
-        "test",
-        "*-debug.log"
-      ]
-    }
-  ],
-  "firestore": {
-    "rules": "firestore.rules",
-    "indexes": "firestore.indexes.json"
-  },
-  "hosting": {
-    "public": "build/web",
-    "cleanUrls": true,
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ],
-    "headers": [
-      {
-        "source": "**",
-        "headers": [
-          {
-            "key": "X-Content-Type-Options",
-            "value": "nosniff"
-          },
-          {
-            "key": "Referrer-Policy",
-            "value": "strict-origin-when-cross-origin"
-          },
-          {
-            "key": "Permissions-Policy",
-            "value": "camera=(self), microphone=(), geolocation=()"
-          },
-          {
-            "key": "X-Frame-Options",
-            "value": "DENY"
-          }
-        ]
-      },
-      {
-        "source": "/app{,/**}",
-        "headers": [
-          {
-            "key": "X-Robots-Tag",
-            "value": "noindex, nofollow"
-          },
-          {
-            "key": "Cache-Control",
-            "value": "no-store"
-          }
-        ]
-      },
-      {
-        "source": "/{login,register,forgot-password,onboarding}",
-        "headers": [
-          {
-            "key": "X-Robots-Tag",
-            "value": "noindex, nofollow"
-          }
-        ]
-      },
-      {
-        "source": "/index.html",
-        "headers": [
-          {
-            "key": "Cache-Control",
-            "value": "no-cache"
-          }
-        ]
-      }
-    ]
-  },
-  "emulators": {
-    "auth": {
-      "port": 9099,
-      "host": "0.0.0.0"
-    },
-    "firestore": {
-      "port": 8080,
-      "host": "0.0.0.0"
-    },
-    "ui": {
-      "enabled": true,
-      "port": 4000
-    },
-    "singleProjectMode": true
-  }
+﻿{
+    "functions":  [
+                      {
+                          "source":  "backend",
+                          "codebase":  "broget",
+                          "runtime":  "nodejs22",
+                          "ignore":  [
+                                         "node_modules",
+                                         ".env",
+                                         ".env.*",
+                                         "test",
+                                         "*-debug.log"
+                                     ]
+                      }
+                  ],
+    "firestore":  {
+                      "rules":  "firestore.rules",
+                      "indexes":  "firestore.indexes.json"
+                  },
+    "hosting":  {
+                    "public":  "build/web",
+                    "cleanUrls":  true,
+                    "ignore":  [
+                                   "firebase.json",
+                                   "**/.*",
+                                   "**/node_modules/**"
+                               ],
+                    "rewrites":  [
+                                     {
+                                         "source":  "**",
+                                         "destination":  "/index.html"
+                                     }
+                                 ],
+                    "headers":  [
+                                    {
+                                        "source":  "**",
+                                        "headers":  [
+                                                        {
+                                                            "key":  "X-Content-Type-Options",
+                                                            "value":  "nosniff"
+                                                        },
+                                                        {
+                                                            "key":  "Referrer-Policy",
+                                                            "value":  "strict-origin-when-cross-origin"
+                                                        },
+                                                        {
+                                                            "key":  "Permissions-Policy",
+                                                            "value":  "camera=(self), microphone=(), geolocation=()"
+                                                        },
+                                                        {
+                                                            "key":  "X-Frame-Options",
+                                                            "value":  "DENY"
+                                                        }
+                                                    ]
+                                    },
+                                    {
+                                        "source":  "/app{,/**}",
+                                        "headers":  [
+                                                        {
+                                                            "key":  "X-Robots-Tag",
+                                                            "value":  "noindex, nofollow"
+                                                        },
+                                                        {
+                                                            "key":  "Cache-Control",
+                                                            "value":  "no-store"
+                                                        }
+                                                    ]
+                                    },
+                                    {
+                                        "source":  "/{login,register,forgot-password,onboarding}",
+                                        "headers":  [
+                                                        {
+                                                            "key":  "X-Robots-Tag",
+                                                            "value":  "noindex, nofollow"
+                                                        }
+                                                    ]
+                                    },
+                                    {
+                                        "source":  "/index.html",
+                                        "headers":  [
+                                                        {
+                                                            "key":  "Cache-Control",
+                                                            "value":  "no-cache"
+                                                        }
+                                                    ]
+                                    },
+                                    {
+                                        "source":  "/{main.dart.js,flutter_bootstrap.js,flutter.js,sw.js,manifest.json,favicon.png}",
+                                        "headers":  [
+                                                        {
+                                                            "key":  "Cache-Control",
+                                                            "value":  "no-cache"
+                                                        }
+                                                    ]
+                                    }
+                                ]
+                },
+    "emulators":  {
+                      "auth":  {
+                                   "port":  9099,
+                                   "host":  "0.0.0.0"
+                               },
+                      "firestore":  {
+                                        "port":  8080,
+                                        "host":  "0.0.0.0"
+                                    },
+                      "ui":  {
+                                 "enabled":  true,
+                                 "port":  4000
+                             },
+                      "singleProjectMode":  true
+                  }
 }
